@@ -89,9 +89,10 @@ WSGI_APPLICATION = 'web_core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.normpath(os.path.join(DB_DIR, 'default/core_db.sqplite3')),
         'OPTIONS': {
-                'read_default_file': os.path.normpath(os.path.join(DB_DIR, 'default/core_app.cnf')), # db configuration file
-                'name': os.path.normpath(os.path.join(DB_DIR, 'default/core_db.sqplite3')) # local db name
+                #'read_default_file': os.path.normpath(os.path.join(DB_DIR, 'default/core_app.cnf')), # db configuration file
+                #'name': os.path.normpath(os.path.join(DB_DIR, 'default/core_db.sqplite3')) # local db name
             },
     }
 }

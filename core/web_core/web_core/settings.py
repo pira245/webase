@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.normpath(os.path.join(DB_DIR, 'default/core_db.sqplite3')),
-        'OPTIONS': {
+        'OPTIONS': { # useful when working with mariadb, mysql and others:
                 #'read_default_file': os.path.normpath(os.path.join(DB_DIR, 'default/core_app.cnf')), # db configuration file
                 #'name': os.path.normpath(os.path.join(DB_DIR, 'default/core_db.sqplite3')) # local db name
             },

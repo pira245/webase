@@ -13,20 +13,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from decouple import config
 from pathlib import Path
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 CORE_DIR = Path(__file__).resolve().parent.parent
+CORE_ENV_FILE = os.path.join(CORE_DIR, 'core.env')
 DB_DIR = os.path.normpath(os.path.join(CORE_DIR, 'core_package/databases'))
 TP_DIR = os.path.normpath(os.path.join(CORE_DIR, 'core_package/templates'))
 PK_DIR = os.path.normpath(os.path.join(CORE_DIR, 'core_package'))
-
+load_dotenv(CORE_ENV_FILE)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r!(9b=lv$oeootjp=d17vce3&&rzvc(8b^87nhe*_arxat!7a*'
+SECRET_KEY = os.environ["django_key"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)

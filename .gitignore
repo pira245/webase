@@ -191,7 +191,6 @@ ProjectSetup.py
 project.csv
 project.env
 core.env
-/mytestunity
 /docker
 /scripts
 /readme_eng

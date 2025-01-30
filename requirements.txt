@@ -1,0 +1,10 @@
+pytest
+python-dotenv
+django
+django-allauth
+django-crispy-forms
+crispy-bootstrap5
+django-bootstrap5
+python-decouple
+sqlite
+sqlalchemy

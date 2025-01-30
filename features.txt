@@ -1,0 +1,14 @@
+- Core: 
+	- Admins
+	- Allauth
+	- Users
+
+- Authentication:
+	- Basic users model
+
+- Custom database structure:
+	
+	- Settings for sqlite3 (default)
+	- Settings for mariadb	(users database)
+	- Settings for postsgres (users database)
+	- User and admins schema

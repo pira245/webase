@@ -35,7 +35,7 @@ SECRET_KEY = os.environ["django_key"]
 DEBUG = config('DEBUG', default=True, cast=bool)
 DEVEL = config('DEVEL', default=True, cast=bool)
 PROD = config('PROD', default=False, cast=bool)
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', config('SERVER', default='0.0.0.0')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', config('SERVER', default='127.0.0.1')]
 
 
 

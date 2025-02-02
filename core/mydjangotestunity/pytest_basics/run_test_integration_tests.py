@@ -1,4 +1,5 @@
 import pytest
+import selenium
 ##############################################################################################
 """
     Testing methods and classes for integration tests
@@ -13,5 +14,7 @@ import core.web_core
 
 
 if __name__ == "__main__":
-    # Run all test available
-	print("Test")
+    # Run all tests available
+
+    pytest.main(["-v", __file__])
+    

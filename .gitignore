@@ -191,7 +191,7 @@ ProjectSetup.py
 project.csv
 project.env
 core.env
-!core/mydjangotestunity/*.env
+core/mydjangotestunity/test.env
 /docker
 /scripts
 /readme_eng

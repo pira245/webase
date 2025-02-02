@@ -19,7 +19,7 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 ##############################################################################################
 # Import all test files
 import core
-import core.mytestunity.system_file as system_file
+import core.mydjangotestunity.system_file as system_file
 import core.web_core
 ##############################################################################################
 

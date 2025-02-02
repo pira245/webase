@@ -8,6 +8,8 @@ from selenium.webdriver.common.keys import Keys
 # Firefox
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service as FirefoxService
+# Django
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 ##############################################################################################
 """
     Testing with pytest
@@ -15,8 +17,15 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 ##############################################################################################
 # Import all test files
 import core
-import core.mytestunity.system_file as system_file
-import core.web_core
+import core.mydjangotestunity.system_file as system_file
+##############################################################################################
+os.environ['DJANGO_SETTINGS_MODULE'] = 'core.web_core.web_core.settings'
+# Import all test in integration_tests files:
+import run_test_integration_tests as integration_tests
+# Import all test in unit_tests files:
+import run_test_unit_tests_classes as unit_tests_classes
+# Import all test in unit_tests files:
+import run_test_unit_tests_functions as unit_tests_functions
 ##############################################################################################
 
 # Configure logging
@@ -31,7 +40,7 @@ FIREFOX_APPLICATION_PATH = FirefoxVar[1]  # Change this path accordingly
 FIREFOX_APPLICATION_DATA = "--user-data-dir={}".format(FirefoxVar[2])  # Change this path accordingly
 
 @pytest.fixture(scope="session")
-def get_headless_firefox_driver():
+def get_headless_firefox_driver(live_server):
 
     """Initialize and return a headless Firefox WebDriver instance with logging."""
     options = FirefoxOptions()
@@ -63,13 +72,21 @@ def get_headless_firefox_driver():
         logging.info("Closing WebDriver...")
         driver.quit()
    
+@pytest.fixture(scope="session")
+def live_server_url(live_server):
+    """Provides the Django live server URL for testing."""
+    return live_server.url
 
 def test_firefox_search(get_headless_firefox_driver):
-    
+    """Test the Firefox WebDriver with a Google search."""    
     driver = get_headless_firefox_driver
     driver.get("https://www.google.com")
     logging.info("Assert that the title of the page is 'Google'")
     assert "Google" in driver.title
+
+
+
+
 
 
 if __name__ == "__main__":

@@ -9,6 +9,11 @@ from selenium.webdriver.common.keys import Keys
 import chromedriver_binary
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
+# Django
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+
+import core.web_core.web_core
+import core.web_core.web_core.settings
 ##############################################################################################
 """
     Testing with pytest
@@ -16,8 +21,15 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 ##############################################################################################
 # Import all test files
 import core
-import core.mytestunity.system_file as system_file
-import core.web_core
+import core.mydjangotestunity.system_file as system_file
+##############################################################################################
+os.environ['DJANGO_SETTINGS_MODULE'] = 'core.web_core.web_core.settings'
+# Import all test in integration_tests files:
+import run_test_integration_tests as integration_tests
+# Import all test in unit_tests files:
+import run_test_unit_tests_classes as unit_tests_classes
+# Import all test in unit_tests files:
+import run_test_unit_tests_functions as unit_tests_functions
 ##############################################################################################
 
 # Configure logging
@@ -31,7 +43,7 @@ CHROME_APPLICATION_PATH = ChromeVar[0]  # Change this path accordingly
 CHROME_APPLICATION_DATA = "--user-data-dir={}".format(ChromeVar[1])  # Change this path accordingly
 
 @pytest.fixture(scope="session")
-def get_headless_chrome_driver():
+def get_headless_chrome_driver(live_server):
 
     """Initialize and return a headless Chrome WebDriver instance with logging."""
     options = ChromeOptions()
@@ -60,6 +72,12 @@ def get_headless_chrome_driver():
     finally:
         #logging.info("Closing WebDriver...")
         driver.quit()
+
+@pytest.fixture(scope="session")
+def live_server_url(live_server):
+    """Provides the Django live server URL for testing."""
+    return live_server.url
+
 
 def test_chrome_search(get_headless_chrome_driver):
     

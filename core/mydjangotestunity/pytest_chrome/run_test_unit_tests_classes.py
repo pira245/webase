@@ -7,7 +7,7 @@ import selenium
 ##############################################################################################
 # Import all test files
 import core
-import core.mytestunity.system_file
+import core.mydjangotestunity.system_file
 import core.web_core
 ##############################################################################################
 

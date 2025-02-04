@@ -1,11 +1,11 @@
 - Core_web: 
-	- Admins
-	- Allauth
-	- Users
+
+	- Django web server
 
 - Authentication:
+
 	- Built-in Django authentication
 
 - Custom database structure:
-	
+
 	- Settings for sqlite3 (default)

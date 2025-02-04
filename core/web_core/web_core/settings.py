@@ -25,12 +25,20 @@ TP_DIR = os.path.normpath(os.path.join(CORE_DIR, 'core_package/templates'))
 PK_DIR = os.path.normpath(os.path.join(CORE_DIR, 'core_package'))
 load_dotenv(CORE_ENV_FILE)
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["django_key"]
-
+if os.path.exists(CORE_ENV_FILE):
+    SECRET_KEY = os.getenv["django_key"]
+    print(f"SECRET_KEY: {SECRET_KEY}")
+else:
+    SECRET_KEY = config('SECRET_KEY', default='SECRET_KEY-django-insecure')
+    print(f"SECRET_KEY: {SECRET_KEY}")
+    print(" Create a core.env file with the SECRET_KEY variable")
+    print(f"Directory: {CORE_ENV_FILE}")
+                        
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 DEVEL = config('DEVEL', default=True, cast=bool)
